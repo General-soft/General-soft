@@ -29,10 +29,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $asd = [
-            1,
-            2,
-        ];
         Auth::extend(
             'grant',
             fn (Application $app, string $name, array $config) => new GrantGuard(
