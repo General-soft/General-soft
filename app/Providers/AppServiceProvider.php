@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Services\FileValidation\IdentityValidation\GoogleDnsIdentityValidator;
+use App\Services\FileValidation\IdentityValidation\IdentityValidator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,14 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        //
+        $this->app->bind(IdentityValidator::class, GoogleDnsIdentityValidator::class);
     }
 }

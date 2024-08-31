@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthenticateUserRequest;
 use App\Http\Resources\TokenResource;
 use App\Services\AuthTokenService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TokenController extends Controller

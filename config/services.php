@@ -37,4 +37,8 @@ return [
         ],
     ],
 
+    'google_dns' => [
+        'base_url' => env('GOOGLE_DNS_BASE_URL'),
+    ],
+
 ];

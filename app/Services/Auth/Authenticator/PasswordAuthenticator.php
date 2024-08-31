@@ -5,17 +5,23 @@ declare(strict_types=1);
 namespace App\Services\Auth\Authenticator;
 
 use App\Models\User;
+use App\Services\User\UserService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class PasswordAuthenticator implements Authenticator
 {
+    public function __construct(
+        private UserService $userService,
+    ) {
+        //
+    }
+
     public function authenticate(array $data): ?User
     {
         $email = $data['email'] ?? null;
 
-        /** @var ?User $user */
-        $user = User::where('email', '=', $email)->first();
+        $user = $this->userService->getUserByEmail($email);
 
         $this->validateUser($user, $data);
 
