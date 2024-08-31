@@ -20,3 +20,5 @@ RUN if [ "$PHP_XDEBUG_ENABLE" = "1" ]; then \
         xdebug.client_port=${PHP_XDEBUG_PORT} \n\
         xdebug.idekey=xdebug \
     " >> ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini ; fi
+
+COPY php.ini /usr/local/etc/php/conf.d/uploads.ini
