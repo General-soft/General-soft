@@ -27,3 +27,6 @@ ide:
 	docker-compose exec php-fpm php artisan ide-helper:generate
 	docker-compose exec php-fpm php artisan ide-helper:meta
 	docker-compose exec php-fpm php artisan ide-helper:models -N
+
+pint:
+	docker-compose exec php-fpm vendor/bin/pint

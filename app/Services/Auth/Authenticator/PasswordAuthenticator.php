@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Services\Auth;
+declare(strict_types=1);
+
+namespace App\Services\Auth\Authenticator;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class PasswordAutheticator implements Autheticator
+class PasswordAuthenticator implements Authenticator
 {
-    public function autheticate(array $data): ?User
+    public function authenticate(array $data): ?User
     {
         $email = $data['email'] ?? null;
 
@@ -33,8 +35,8 @@ class PasswordAutheticator implements Autheticator
             ],
         ]);
 
-        $validator->after(static function (\Illuminate\Validation\Validator $validator) use ($user, $data, $password) {
-            if (is_null($user) || !(Hash::check($password, $user->password))) {
+        $validator->after(static function (\Illuminate\Validation\Validator $validator) use ($user, $password) {
+            if (is_null($user) || ! (Hash::check($password, $user->password))) {
                 $validator->errors()->add(
                     'email',
                     'Invalid login or password.',

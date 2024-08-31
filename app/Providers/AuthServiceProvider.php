@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
-use App\Services\Auth\Autheticator;
+use App\Services\Auth\Authenticator\Authenticator;
+use App\Services\Auth\Authenticator\PasswordAuthenticator;
 use App\Services\Auth\GrantGuard;
-use App\Services\Auth\PasswordAutheticator;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -17,8 +19,8 @@ class AuthServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            abstract: Autheticator::class,
-            concrete: PasswordAutheticator::class,
+            abstract: Authenticator::class,
+            concrete: PasswordAuthenticator::class,
         );
     }
 
@@ -27,11 +29,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $asd = [
+            1,
+            2,
+        ];
         Auth::extend(
             'grant',
-            fn(Application $app, string $name, array $config) => new GrantGuard(
+            fn (Application $app, string $name, array $config) => new GrantGuard(
                 $app->make('request'),
-                app(Autheticator::class),
+                app(Authenticator::class),
             ),
         );
     }

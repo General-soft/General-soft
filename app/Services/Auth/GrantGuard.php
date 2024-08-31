@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Auth;
 
 use App\Models\User;
-use Hash;
+use App\Services\Auth\Authenticator\Authenticator;
 use Illuminate\Auth\GuardHelpers;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Validator;
 
 class GrantGuard implements Guard
 {
@@ -16,7 +16,7 @@ class GrantGuard implements Guard
 
     public function __construct(
         private readonly Request $request,
-        private Autheticator $autheticator,
+        private readonly Authenticator $authenticator,
     ) {
         //
     }
@@ -34,7 +34,7 @@ class GrantGuard implements Guard
 
     public function authenticateUser(array $data): ?User
     {
-        return $this->autheticator->autheticate($data);
+        return $this->authenticator->authenticate($data);
     }
 
     public function validate(array $credentials = [])
