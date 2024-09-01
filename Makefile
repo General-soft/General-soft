@@ -5,8 +5,9 @@ setup:
 	sleep 5
 	docker-compose exec php-fpm php artisan key:gen
 	docker-compose exec -it php-fpm php artisan migrate:fresh
-	docker-compose exec php-fpm php artisan passport:keys
-	docker-compose exec php-fpm php artisan passport:client --personal
+	docker-compose exec php-fpm php artisan passport:keys --force
+	docker-compose exec php-fpm php artisan passport:client --personal --name="Laravel Personal Access Client"
+	docker-compose exec php-fpm php artisan db:seed
 	make ide
 
 .PHONY: down
