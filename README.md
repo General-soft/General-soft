@@ -21,6 +21,8 @@ Other useful commands to interact with containers:
 * `make up` - start containers
 * `make restart` - restart containers
 
+Run `make api-docs` to generate api documentation. After starting the project documentation can be accessible using `http://localhost/api/documentation` url.
+
 # Testing
 
 After starting project several containers should be up. 
