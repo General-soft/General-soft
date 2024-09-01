@@ -9,6 +9,9 @@ use Illuminate\Http\Response;
 use OpenApi\Attributes\JsonContent;
 use OpenApi\Attributes\Response as OpenApiResponse;
 
+/**
+ * @codeCoverageIgnore
+ */
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class HttpUnauthorizedResponse extends OpenApiResponse
 {
