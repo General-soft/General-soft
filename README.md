@@ -23,6 +23,10 @@ Other useful commands to interact with containers:
 
 Run `make api-docs` to generate api documentation. After starting the project documentation can be accessible using `http://localhost/api/documentation` url.
 
+Users credentials: 
+* `{"email": "test@example.com", "password": "test", "grant_type": "password"}`
+* `{"email": "test2@example.com", "password": "test", "grant_type": "password"}`
+
 # Testing
 
 After starting project several containers should be up. 

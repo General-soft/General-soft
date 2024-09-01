@@ -34,3 +34,8 @@ Currently, full open api attribute information should be provided. It will be mo
 
 Cache dns response in cache for better performance. Possibly add other implementations for dns validation `IdentityValidator` in case google dns lookup service is not accessible. 
 
+
+## Add a way to add new users
+
+Currently, there is no way to add a new user.
+
