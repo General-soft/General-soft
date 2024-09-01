@@ -17,6 +17,8 @@ use Tests\Feature\ApiTestCase;
 
 class FileValidationTest extends ApiTestCase
 {
+    const VALIDATION_ROUTE = '/api/validation';
+
     private User $authUser;
 
     protected function setUp(): void
@@ -36,7 +38,7 @@ class FileValidationTest extends ApiTestCase
     {
         $data = $this->jsonData();
 
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode($data)),
         ]);
 
@@ -54,7 +56,7 @@ class FileValidationTest extends ApiTestCase
         $data = $this->jsonData();
         $data['data']['recipient'] = [];
 
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode($data)),
         ]);
 
@@ -72,7 +74,7 @@ class FileValidationTest extends ApiTestCase
         $data = $this->jsonData();
         $data['data']['issuer']['identityProof']['key'] = '';
 
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode($data)),
         ]);
 
@@ -91,7 +93,7 @@ class FileValidationTest extends ApiTestCase
 
         $this->app->bind(IdentityValidator::class, IdentityFailValidator::class);
 
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode($data)),
         ]);
 
@@ -109,7 +111,7 @@ class FileValidationTest extends ApiTestCase
         $data = $this->jsonData();
         $data['signature']['targetHash'] = '123';
 
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode($data)),
         ]);
 
@@ -125,7 +127,7 @@ class FileValidationTest extends ApiTestCase
 
     public function testFailEmptyFile(): void
     {
-        $response = $this->post('/api/validate', [
+        $response = $this->post(self::VALIDATION_ROUTE, [
             'file' => UploadedFile::fake()->createWithContent('test.json', json_encode([])),
         ]);
 
@@ -134,7 +136,7 @@ class FileValidationTest extends ApiTestCase
 
     public function testFailInvalidFile(): void
     {
-        $response = $this->post('/api/validate');
+        $response = $this->post(self::VALIDATION_ROUTE);
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
