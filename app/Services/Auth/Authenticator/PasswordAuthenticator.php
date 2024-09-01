@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as ValidatorInstance;
 
 class PasswordAuthenticator implements Authenticator
 {
@@ -41,7 +42,7 @@ class PasswordAuthenticator implements Authenticator
             ],
         ]);
 
-        $validator->after(static function (\Illuminate\Validation\Validator $validator) use ($user, $password) {
+        $validator->after(static function (ValidatorInstance $validator) use ($user, $password) {
             if (is_null($user) || ! (Hash::check($password, $user->password))) {
                 $validator->errors()->add(
                     'email',
