@@ -20,7 +20,7 @@ class TokenController extends Controller
 
     public function store(AuthenticateUserRequest $request): Response
     {
-        $userToken = $this->authTokenService->create($request->user(), 'api');
+        $userToken = $this->authTokenService->createToken($request->user(), 'api');
 
         return response(
             content: [

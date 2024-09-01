@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Builders\GoogleDns\LookupDnsResponseBuilder;
 use App\DTO\GoogleDns\LookupResponseDTO;
 use App\Enums\GoogleDnsLookup\RecordType;
+use App\Repositories\Builders\GoogleDns\LookupDnsResponseBuilder;
 use Illuminate\Http\Client\PendingRequest;
 
 class GoogleDnsLookupRepository

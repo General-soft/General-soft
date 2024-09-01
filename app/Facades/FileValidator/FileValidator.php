@@ -21,8 +21,8 @@ class FileValidator
 
     public function validate(User $user, ValidationRequestDTO $validationRequest): ValidationResultDTO
     {
-        $fileValidatiorService = $this->fileValidationFactory->validationService($validationRequest->getFileType());
-        $validationResult = $fileValidatiorService->validateFileRequest($validationRequest);
+        $fileValidationService = $this->fileValidationFactory->validationService($validationRequest->getFileType());
+        $validationResult = $fileValidationService->validateFileRequest($validationRequest);
 
         $this->validationHistoryService->createHistoryItem($user, $validationRequest, $validationResult);
 

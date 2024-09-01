@@ -19,13 +19,20 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        $this->app->bind(IdentityValidator::class, GoogleDnsIdentityValidator::class);
+        $this->registerIdentityValidator();
 
+        $this->registerFileValidationService();
+    }
+
+    private function registerIdentityValidator(): void
+    {
+        $this->app->bind(IdentityValidator::class, GoogleDnsIdentityValidator::class);
+    }
+
+    private function registerFileValidationService(): void
+    {
         $this->app->tag(
             abstracts: [
                 HashStructureValidator::class,

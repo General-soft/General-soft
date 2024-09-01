@@ -32,13 +32,13 @@ class GrantGuard implements Guard
         return $this->user;
     }
 
-    public function authenticateUser(array $data): ?User
-    {
-        return $this->authenticator->authenticate($data);
-    }
-
     public function validate(array $credentials = [])
     {
         return true;
+    }
+
+    private function authenticateUser(array $data): ?User
+    {
+        return $this->authenticator->authenticate($data);
     }
 }

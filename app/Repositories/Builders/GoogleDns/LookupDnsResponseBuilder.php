@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Builders\GoogleDns;
+namespace App\Repositories\Builders\GoogleDns;
 
 use App\DTO\GoogleDns\LookupResponseDTO;
 use Arr;
@@ -13,7 +13,7 @@ class LookupDnsResponseBuilder
     {
         return new LookupResponseDTO(
             status: $data['Status'],
-            answers: Arr::map($data['Answer'], function (array $answerData) {
+            answers: Arr::map($data['Answer'] ?? [], function (array $answerData) {
                 return $answerData['data'];
             }),
         );
