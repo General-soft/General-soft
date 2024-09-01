@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 
 class ValidationController extends Controller
 {
-    public function validate(
+    public function store(
         ValidateRequest $request,
         FileValidator $fileValidator,
         ValidationRequestBuilder $requestBuilder

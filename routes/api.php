@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:grant'])->post('/token', [TokenController::class, 'store']);
 
 Route::middleware(['auth:api'])->group(static function (): void {
-    Route::post('/validate', [ValidationController::class, 'validate']);
+    Route::post('/validation', [ValidationController::class, 'store']);
 });
