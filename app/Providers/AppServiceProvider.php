@@ -7,6 +7,8 @@ namespace App\Providers;
 use App\Services\FileValidator\FileValidationService;
 use App\Services\FileValidator\IdentityValidation\GoogleDnsIdentityValidator;
 use App\Services\FileValidator\IdentityValidation\IdentityValidator;
+use App\Services\FileValidator\IssuerDataHasher\IssuerFileDataHasher;
+use App\Services\FileValidator\IssuerDataHasher\Sha256IssuerDataFileHasher;
 use App\Services\FileValidator\JsonFileValidationService;
 use App\Services\FileValidator\Validators\HashStructureValidator;
 use App\Services\FileValidator\Validators\HashValidator;
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerIdentityValidator();
 
+        $this->registerIssuerFileDataHasher();
+
         $this->registerFileValidationService();
     }
 
@@ -31,13 +35,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IdentityValidator::class, GoogleDnsIdentityValidator::class);
     }
 
+    private function registerIssuerFileDataHasher(): void
+    {
+        $this->app->bind(IssuerFileDataHasher::class, Sha256IssuerDataFileHasher::class);
+    }
+
     private function registerFileValidationService(): void
     {
         $this->app->tag(
             abstracts: [
-                HashStructureValidator::class,
-                IssuerStructureValidator::class,
                 RecipientStuctureValidator::class,
+                IssuerStructureValidator::class,
+                HashStructureValidator::class,
                 HashValidator::class,
                 IssuerIdentityValidator::class,
             ],

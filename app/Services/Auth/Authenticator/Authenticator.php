@@ -10,9 +10,6 @@ use Illuminate\Validation\ValidationException;
 interface Authenticator
 {
     /**
-     * @param array $data
-     * @return ?User
-     *
      * @throws ValidationException
      */
     public function authenticate(array $data): ?User;

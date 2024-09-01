@@ -43,7 +43,7 @@ class PasswordAuthenticator implements Authenticator
         ]);
 
         $validator->after(static function (ValidatorInstance $validator) use ($user, $password) {
-            if (is_null($user) || ! (Hash::check($password, $user->password))) {
+            if (is_null($user) || !(Hash::check($password, $user->password))) {
                 $validator->errors()->add(
                     'email',
                     'Invalid login or password.',

@@ -28,7 +28,7 @@ class GoogleDnsServiceProvider extends ServiceProvider
     {
         $baseUrl = config('services.google_dns.base_url');
 
-        if (! $baseUrl) {
+        if (!$baseUrl) {
             throw new NotConfigured;
         }
 

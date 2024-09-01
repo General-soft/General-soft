@@ -25,7 +25,7 @@ class GoogleDnsIdentityValidator implements IdentityValidator
         }
 
         foreach ($lookupResponse->getAnswers() as $answer) {
-            if (preg_match(sprintf('/p=%s[;^]?/', preg_quote($key)), $answer)) {
+            if (preg_match(sprintf('/(p=%1$s;)|(p=%1$s$)/', preg_quote($key)), $answer)) {
                 return true;
             }
         }

@@ -5,34 +5,25 @@ declare(strict_types=1);
 namespace App\Services\FileValidator\Validators;
 
 use App\Enums\FileValidationResult;
-use Arr;
+use App\Services\FileValidator\IssuerDataHasher\IssuerFileDataHasher;
 
 class HashValidator implements IssuerFileValidator
 {
+    public function __construct(
+        private IssuerFileDataHasher $fileDataHasher,
+    ) {
+        //
+    }
+
     public function validate(array $data): ?FileValidationResult
     {
-        $dataDotNotation = $this->transformToDotNotation($data['data']);
-        $targetHash = $data['signature']['targetHash'];
+        $targetHash = $data['signature']['targetHash'] ?? null;
+        $documentHash = $this->fileDataHasher->hashFileData($data['data'] ?? []);
 
-        $hashesPerDocumentLine = [];
-        foreach ($dataDotNotation as $key => $value) {
-            $hashesPerDocumentLine[] = $this->hashArray([$key => $value]);
+        if (!$targetHash) {
+            return FileValidationResult::InvalidSignature;
         }
 
-        $hashesPerDocumentLine = array_values(Arr::sort($hashesPerDocumentLine));
-
-        $documentHash = $this->hashArray($hashesPerDocumentLine);
-
         return $documentHash === $targetHash ? null : FileValidationResult::InvalidSignature;
-    }
-
-    private function transformToDotNotation(array $data): array
-    {
-        return Arr::dot($data);
-    }
-
-    private function hashArray(array $data): string
-    {
-        return hash('sha256', json_encode($data));
     }
 }

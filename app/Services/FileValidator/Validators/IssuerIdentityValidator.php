@@ -20,7 +20,7 @@ class IssuerIdentityValidator implements IssuerFileValidator
         $key = $data['data']['issuer']['identityProof']['key'] ?? null;
         $location = $data['data']['issuer']['identityProof']['location'] ?? null;
 
-        if (! $key || ! $location) {
+        if (!$key || !$location) {
             return FileValidationResult::InvalidIssuer;
         }
 

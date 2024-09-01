@@ -14,7 +14,7 @@ RUN if [ "$PHP_XDEBUG_ENABLE" = "1" ]; then \
     pecl install xdebug  \
     && docker-php-ext-enable xdebug \
     && echo " \
-        xdebug.mode=debug \n\
+        xdebug.mode=debug,coverage \n\
         xdebug.start_with_request=yes \n\
         xdebug.client_host=host.docker.internal \n\
         xdebug.client_port=${PHP_XDEBUG_PORT} \n\
