@@ -38,4 +38,13 @@ To generate coverage run either `make coverage` to generate coverage report in c
 
 To generate html report run `make coverage-report` and then access `coverage/index.html`.
 
+# Technical documentation
 
+Project endpoints separated into two group `api` and `web`. `web` is only to access to root of the project and can be removed in the future.
+
+Api has 3 layers: `Facades` to combine business logic of several services. `Services` for business logic. `Repositories` to access external data.
+
+Interface `\App\Services\FileValidator\FileValidationService` responsible for validation of files. To add more possibilities to validate other files class should implement this interface. 
+
+There is only one implementation for validation of json files `\App\Services\FileValidator\JsonFileValidationService`. It accepts an array of validators using injections from `AppServiceProvider`.
+Each validator implements `\App\Services\FileValidator\Validators\IssuerFileValidator` interface and validates its own part of the logic.
