@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation\Validators;
+namespace App\Services\FileValidator\Validators;
 
 use App\Enums\FileValidationResult;
-use App\Services\FileValidation\IdentityValidation\IdentityValidator;
+use App\Services\FileValidator\IdentityValidation\IdentityValidator;
 
-class ValidateIssuerIdentity implements FileValidator
+class IssuerIdentityValidator implements IssuerFileValidator
 {
     public function __construct(
         private IdentityValidator $identityValidator,

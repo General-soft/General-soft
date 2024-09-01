@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation;
+namespace App\Services\FileValidator;
 
 use App\Repositories\GoogleDnsLookupRepository;
 

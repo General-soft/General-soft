@@ -20,7 +20,7 @@ class GoogleDnsLookupRepository
 
     public function resolve(string $name, RecordType $recordType): LookupResponseDTO
     {
-        $response = $this->pendingRequest->get('/resolve?name=ropstore.accredify.io&type=TXT', [
+        $response = $this->pendingRequest->get('/resolve', [
             'name' => $name,
             'type' => $recordType->value,
         ]);

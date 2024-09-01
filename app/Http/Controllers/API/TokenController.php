@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthenticateUserRequest;
 use App\Http\Resources\TokenResource;
-use App\Services\AuthTokenService;
+use App\Services\Auth\AuthTokenService;
 use Illuminate\Http\Response;
 
 class TokenController extends Controller

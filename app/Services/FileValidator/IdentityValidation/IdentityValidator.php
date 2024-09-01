@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation\IdentityValidation;
+namespace App\Services\FileValidator\IdentityValidation;
 
 interface IdentityValidator
 {

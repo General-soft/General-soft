@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation\Validators;
+namespace App\Services\FileValidator\Validators;
 
 use App\Enums\FileValidationResult;
 
-interface FileValidator
+interface IssuerFileValidator
 {
     public function validate(array $data): ?FileValidationResult;
 }

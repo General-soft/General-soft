@@ -6,9 +6,12 @@ namespace App\Repositories;
 
 use App\Models\User;
 
-class UserModelRepository extends BaseModelRepository
+/**
+ * @extends BaseModelRepository<User>
+ */
+class UserRepository extends BaseModelRepository
 {
-    protected $model = User::class;
+    protected string $model = User::class;
 
     public function findByEmail(string $email): ?User
     {

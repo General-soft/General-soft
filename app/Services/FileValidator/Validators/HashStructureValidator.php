@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation\Validators;
+namespace App\Services\FileValidator\Validators;
 
 use App\Enums\FileValidationResult;
 use Illuminate\Support\Facades\Validator;
 
-class ValidateHashStructure implements FileValidator
+class HashStructureValidator implements IssuerFileValidator
 {
     public function validate(array $data): ?FileValidationResult
     {

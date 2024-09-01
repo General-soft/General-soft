@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\FileValidation\IdentityValidation;
+namespace App\Services\FileValidator\IdentityValidation;
 
 use App\Enums\GoogleDnsLookup\LookupResponseStatus;
 use App\Enums\GoogleDnsLookup\RecordType;
