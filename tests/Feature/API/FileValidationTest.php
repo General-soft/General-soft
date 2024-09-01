@@ -17,7 +17,7 @@ use Tests\Feature\ApiTestCase;
 
 class FileValidationTest extends ApiTestCase
 {
-    const VALIDATION_ROUTE = '/api/validation';
+    const VALIDATION_ROUTE = '/api/validations';
 
     private User $authUser;
 

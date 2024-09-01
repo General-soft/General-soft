@@ -8,9 +8,11 @@ use Tests\Feature\ApiTestCase;
 
 class GrantTokenTest extends ApiTestCase
 {
+    const API_ENDPOINT = '/api/tokens';
+
     public function testSuccessGrantToken(): void
     {
-        $response = $this->post('/api/token', [
+        $response = $this->post(self::API_ENDPOINT, [
             'email' => 'test@example.com',
             'password' => 'test',
             'grant_type' => 'password',
@@ -29,7 +31,7 @@ class GrantTokenTest extends ApiTestCase
 
     public function testInvalidGrantToken(): void
     {
-        $response = $this->post('/api/token', [
+        $response = $this->post(self::API_ENDPOINT, [
             'email' => 'test@example.com',
             'password' => 'test2',
             'grant_type' => 'password',
@@ -47,7 +49,7 @@ class GrantTokenTest extends ApiTestCase
 
     public function testNoGrantTypeToken(): void
     {
-        $response = $this->post('/api/token', [
+        $response = $this->post(self::API_ENDPOINT, [
             'email' => 'test@example.com',
             'password' => 'test',
         ]);

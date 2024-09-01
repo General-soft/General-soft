@@ -50,3 +50,7 @@ coverage:
 coverage-report:
 	rm -rf ./coverage
 	docker-compose exec php-fpm php vendor/bin/phpunit --coverage-html /application/coverage
+
+.PHONY: coverage
+api-docs:
+	docker-compose exec php-fpm php artisan l5-swagger:generate

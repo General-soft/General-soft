@@ -22,7 +22,7 @@ class PasswordAuthenticator implements Authenticator
     {
         $email = $data['email'] ?? null;
 
-        $user = $this->userService->getUserByEmail($email);
+        $user = $email ? $this->userService->getUserByEmail($email) : null;
 
         $this->validateUser($user, $data);
 
